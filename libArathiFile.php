@@ -7,6 +7,14 @@
  | E-mail: ssdfa7@gmail.com
  +------------------------------------------------*/
 /*--------------------------------------------------
+ | Arathi Common PHP Library
+ +------------------------------------------------*/
+$enable_log = true;
+function decho($log)
+{
+    if ($enable_log) echo($log);
+}
+/*--------------------------------------------------
  | TAR/GZIP/BZIP2/ZIP ARCHIVE CLASSES 2.1
  | By Devin Doucette
  | Copyright (c) 2005 Devin Doucette
@@ -700,13 +708,16 @@ function ext_delete($target) {
         if (is_dir($target)) {
             $handle = opendir($target);
             while($file_name = readdir($handle)) {
-                if ($file_name != "." && $file_name != "..")
+                if ($file_name != "." && $file_name != "..") {
                     ext_delete($target."/".$file_name);
+                }
             }
             @closedir($handle);
             $success = rmdir($target);
         } 
-        else $success = unlink($target);
+        else {
+            $success = unlink($target);
+        }
     }
     return $success;
 }
@@ -715,15 +726,19 @@ function ext_copy($src, $dest) {
     $success = true;
     if (file_exists($src)) {
         if (is_dir($src)) {
-            mkdir($dest,0755);
+            if ( file_exists($dest)==false )
+                mkdir($dest,0755);
             $handle = opendir($src);
             while(($file_name = readdir($handle))&&($success)) {
-                if ($file_name != "." && $file_name != "..")
+                if ($file_name != "." && $file_name != "..") {
                     $success = ext_copy($src."/".$file_name,$dest."/".$file_name);
+                }
             }
             @closedir($handle);
         } 
-        else $success = copy((string)$src,(string)$dest);
+        else {
+            $success = copy((string)$src,(string)$dest);
+        }
     }
     return $success;
 }

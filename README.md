@@ -2,7 +2,7 @@
 
 ##archive 档案文件类
 
-### archive($name) 构造函数
+### archive(string $name) 构造函数
 ### set_options($options) 设置归档选项
 ### create_archive() 创建档案文件
 ### add_data($data) 添加数据？
@@ -17,37 +17,37 @@
 
 ##tar_file tar文件类
 
-### tar_file($name) 构造函数
+### tar_file(string $name) 构造函数
 ### create_tar() 创建tar包
 ### extract_files() 解压文件
 ### open_archive() 打开档案文件
 
 ## gzip_file gz文件类
 
-### gzip_file($name) 构造函数
+### gzip_file(string $name) 构造函数
 ### create_gzip() 创建gz包
 ### open_archive() 打开档案文件
 
 ## bzip_file bz文件类
 
-### bzip_file($name) 构造函数
+### bzip_file(string $name) 构造函数
 ### create_bzip() 创建bz包
 ### open_archive() 打开档案文件
 
 ## zip_file zip文件类
 
-### zip_file($name) 构造函数
+### zip_file(string $name) 构造函数
 ### create_zip() 创建zip包
 
 ## AFL提供的文件管理函数
 
-### ext_size($target) 扩散型大小获取
+### int ext_size(string $target) 扩散型大小获取
 可以获取单个文件或者整个目录的大小
 
-### ext_delete($target) 扩散型删除
+### bool ext_delete(string $target) 扩散型删除
 可以删除单个文件或者整个目录
 
-### ext_copy($target) 扩散型复制
+### bool ext_copy(string $src, string $dest) 扩散型复制
 可以复制单个文件或者整个目录
 
 
