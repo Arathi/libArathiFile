@@ -742,4 +742,27 @@ function ext_copy($src, $dest) {
     }
     return $success;
 }
+
+function download_to_server($url)
+{
+    set_time_limit(24*60*60);
+    $destination_folder = './download/'; //must end with '/'
+    $newfname = $destination_folder . basename($url);
+    $file = fopen ($url, "rb");
+    if ($file) {
+        $newf = fopen ($newfname, "wb");
+        if ($newf){
+            while(!feof($file)) {
+                fwrite( $newf, fread($file, 1024 * 8 ), 1024 * 8 );
+            }
+        }
+    }
+    if ($file) {
+        fclose($file);
+    }
+    if ($newf) {
+        fclose($newf);
+    }
+}
+
 ?>
